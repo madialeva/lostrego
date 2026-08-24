@@ -23,11 +23,11 @@ read the code or the `openspec/` specs.
 
 ## 2. Adding Lostrego to your project
 
-Lostrego is a single JPMS module named `com.angazo.lostrego`. The library is not yet published
+Lostrego is a single JPMS module named `dev.ktai.lostrego`. The library is not yet published
 to Maven Central (that is a planned milestone), so today you build it from source:
 
 ```bash
-git clone https://github.com/angazo/lostrego.git
+git clone https://github.com/madialeva/lostrego.git
 cd lostrego/src
 ./gradlew build
 ```
@@ -36,11 +36,11 @@ In your own `module-info.java`, declare the dependency:
 
 ```java
 module your.app {
-    requires com.angazo.lostrego;
+    requires dev.ktai.lostrego;
 }
 ```
 
-Everything you need lives in a single package: `com.angazo.lostrego.core`.
+Everything you need lives in a single package: `dev.ktai.lostrego.core`.
 
 ## 3. Core concepts
 
@@ -83,12 +83,12 @@ byte[] raw           = packet.payload();        // captured bytes
 ### 3.3 The entry point — `PacketCaptures`
 
 `PacketCaptures` is the factory that discovers the available backend at runtime and opens
-sessions. You never import backend classes — only `com.angazo.lostrego.core`.
+sessions. You never import backend classes — only `dev.ktai.lostrego.core`.
 
 ## 4. Live capture
 
 ```java
-import com.angazo.lostrego.core.*;
+import dev.ktai.lostrego.core.*;
 
 CaptureConfig config = CaptureConfig.builder()
         .device("eth0")

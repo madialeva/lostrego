@@ -1,6 +1,6 @@
-module com.angazo.lostrego.spy.common {
-    requires transitive com.angazo.lostrego;
+module dev.ktai.lostrego.spy.common {
+    requires transitive dev.ktai.lostrego;
 
-    exports com.angazo.lostrego.spy.common;
-    exports com.angazo.lostrego.spy.common.protocol;
+    exports dev.ktai.lostrego.spy.common;
+    exports dev.ktai.lostrego.spy.common.protocol;
 }

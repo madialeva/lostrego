@@ -3,7 +3,7 @@ schema: spec-driven
 context: |
   Tech stack: Java 25, Gradle, FFM API (Foreign Function & Memory).
   Estructura: un único módulo de librería (`lostrego/`) con paquetes internos — core (API pública, modelo), backend/libpcap, backend/pdpk, backend/npcap. Futuro módulo `lostrego-app` como ejemplo de consumo.
-  Paquete base: com.angazo.lostrego.
+  Paquete base: dev.ktai.lostrego.
   Testing: JUnit 5 (JUnitPlatform), pruebas condicionales (@EnabledOnOs), archivos .pcap de ejemplo.
   Convenciones: Java moderno (var, text blocks, pattern matching, sealed types), FFM API para todo el código nativo (nada de JNI/JNA). Gestión de memoria nativa con arenas (Arena.ofConfined/ofShared), sin exponer MemorySegment fuera del paquete backend. Selección de backend en runtime vía ServiceLoader o factoría.
   Idioma: código fuente en inglés, documentación del proyecto en español.

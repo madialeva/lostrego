@@ -11,7 +11,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.angazo.lostrego.spy.Main'
-    mainModule = 'com.angazo.lostrego.spy'
-    applicationDefaultJvmArgs = ['--enable-native-access=com.angazo.lostrego']
+    mainClass = 'dev.ktai.lostrego.spy.Main'
+    mainModule = 'dev.ktai.lostrego.spy'
+    applicationDefaultJvmArgs = ['--enable-native-access=dev.ktai.lostrego']
 }

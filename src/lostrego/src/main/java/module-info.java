@@ -1,8 +1,8 @@
-module com.angazo.lostrego {
-    exports com.angazo.lostrego.core;
+module dev.ktai.lostrego {
+    exports dev.ktai.lostrego.core;
 
-    uses com.angazo.lostrego.core.spi.CaptureProvider;
+    uses dev.ktai.lostrego.core.spi.CaptureProvider;
 
-    provides com.angazo.lostrego.core.spi.CaptureProvider
-        with com.angazo.lostrego.backend.libpcap.LibpcapProvider;
+    provides dev.ktai.lostrego.core.spi.CaptureProvider
+        with dev.ktai.lostrego.backend.libpcap.LibpcapProvider;
 }

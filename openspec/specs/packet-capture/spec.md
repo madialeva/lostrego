@@ -117,7 +117,7 @@ El API pública SHALL exponer únicamente tipos del paquete `core`; ningún tipo
 #### Scenario: Sin tipos de backend en el contrato público
 
 - **WHEN** un usuario consume el API pública para capturar paquetes
-- **THEN** solo necesita importar tipos de `com.angazo.lostrego.core`, sin referencia a `libpcap`, `pdpk` o `npcap`
+- **THEN** solo necesita importar tipos de `dev.ktai.lostrego.core`, sin referencia a `libpcap`, `pdpk` o `npcap`
 
 ### Requirement: Apertura de una captura offline
 

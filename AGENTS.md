@@ -35,12 +35,12 @@ src/
 │
 └── lostrego-app/                    → (futuro) App de ejemplo que consume la librería
 
-Paquete base: com.angazo.lostrego
+Paquete base: dev.ktai.lostrego
 ```
 
 **Organización de paquetes dentro de la librería:**
 
-| Paquete (bajo `com.angazo.lostrego`) | Responsabilidad |
+| Paquete (bajo `dev.ktai.lostrego`) | Responsabilidad |
 |---|---|
 | `core` | Interfaces y tipos comunes (`PacketCapture`, `PacketListener`, `Packet`), factoría de backends, modelo de paquete independiente de plataforma |
 | `backend.libpcap` | Adaptador FFM sobre libpcap, implementación del SPI de core |
@@ -76,7 +76,7 @@ Paquete base: com.angazo.lostrego
 - **Documentación OpenSpec**: la prosa de `proposal.md`, `design.md`, `tasks.md` y las especificaciones debe estar en español. Se mantienen en inglés únicamente las palabras, encabezados, etiquetas o marcadores que OpenSpec exija, además de nombres de módulos, clases, interfaces, rutas, códigos y otros identificadores técnicos.
 - **Commits**: mensajes de commit en inglés, siguiendo conventional commits (feat:, fix:, docs:, etc.)
 - **Issues y milestones de GitHub**: redactados en inglés (títulos y descripciones).
-- **Paquete base**: `com.angazo.lostrego`
+- **Paquete base**: `dev.ktai.lostrego`
 - **Layout de proyecto**: los ficheros de build de Gradle y los módulos viven bajo el directorio `src/` (mismo patrón que el proyecto arume). Los comandos Gradle se ejecutan desde `src/`.
 - **Catálogo de versiones**: las dependencias se centralizan en `src/gradle/libs.versions.toml`. Usar `version.ref` en las dependencias de submódulos, no versiones inline.
 
