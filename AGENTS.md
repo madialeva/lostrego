@@ -58,7 +58,7 @@ Paquete base: com.angazo.lostrego
 ## Estado actual
 
 - **Fase actual:** Fase 1 — implementación de backends nativos (libpcap → pdpk → npcap) y primer consumidor (`lostrego-spy`)
-- **Último hito:** Implementado y mergeado el issue #16: aplicación de consola `lostrego-spy` (dos módulos: `lostrego-spy-common` con la capa de análisis reutilizable —`CaptureSettings`, `CaptureRunner` y el disector de árbol de protocolos `Layer`/`LayerVisitor`— y `lostrego-spy` con la CLI picocli y el renderizado). Empaquetada con el plugin `application` de Gradle (`installDist`/`distZip`) y *native access* declarado vía `applicationDefaultJvmArgs`. Change archivado como `2026-08-20-is16-lostrego-spy`.
+- **Último hito:** Implementado y mergeado el issue #7: captura offline (`openOffline`) y escritura de savefiles (`PacketDumper`/`openDumper`) sobre el backend libpcap, ampliando el SPI de `core` con capacidades opcionales (`supportsOffline`/`supportsWriting`). Añadido el manual de usuario `docs/user-guide.md`. Change archivado como `2026-08-24-is7-offline-capture`.
 - **Próximo hito:** Backend pdpk (Linux) mediante FFM. Le seguirá npcap (Windows).
 
 
@@ -106,7 +106,7 @@ Paquete base: com.angazo.lostrego
 
 - **Fase 0 — arranque y API pública** (completada): esqueleto Gradle + CI (issue #1) y API pública de `core` + SPI (issue #5).
 - **Fase 1 — backends nativos**: libpcap (Linux/Mac) → pdpk (Linux) → npcap (Windows), cada uno implementando `CaptureProvider` mediante FFM.
-- **Futuro** (sin milestone asignado aún): capa de parseo de protocolos, captura offline, enumeración de dispositivos, publicación a Maven Central, macOS en CI. Ver issues en el milestone Backlog.
+- **Futuro** (sin milestone asignado aún): capa de parseo de protocolos, enumeración de dispositivos, publicación a Maven Central, macOS en CI. Ver issues en el milestone Backlog.
 
 ## Preferencias de trabajo del usuario
 

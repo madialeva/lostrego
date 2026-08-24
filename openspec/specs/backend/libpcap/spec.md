@@ -3,9 +3,7 @@
 ## Purpose
 
 Define el comportamiento del backend de captura libpcap de lostrego: la disponibilidad de la librería nativa, la apertura de capturas en vivo aplicando la configuración de `core`, la entrega de paquetes traducidos al modelo común y la gestión correcta de recursos y errores.
-
 ## Requirements
-
 ### Requirement: Disponibilidad del backend libpcap
 
 El backend libpcap SHALL reportarse como soportado solo cuando su librería nativa pueda cargarse en la plataforma, y SHALL reportarse como no soportado (sin lanzar excepción) en caso contrario, de modo que no impida el funcionamiento de otros backends.
@@ -107,3 +105,41 @@ La sesión SHALL liberar el handle nativo de libpcap al cerrarse, y el cierre SH
 
 - **WHEN** el usuario cierra la misma sesión más de una vez
 - **THEN** la segunda llamada no produce error
+
+### Requirement: Lectura offline con libpcap
+
+El backend libpcap SHALL abrir una sesión de lectura desde un fichero `.pcap`/`.pcapng` y entregar sus paquetes traducidos al modelo de `core`. Si el fichero no puede abrirse, SHALL lanzar una `CaptureException` con el mensaje de error nativo.
+
+#### Scenario: Apertura de un fichero válido
+
+- **WHEN** se abre un fichero de captura válido
+- **THEN** se devuelve una sesión de lectura lista para iniciar
+
+#### Scenario: Fichero inválido
+
+- **WHEN** se abre un fichero inexistente o corrupto
+- **THEN** se lanza una `CaptureException` con un mensaje que incluye la causa nativa
+
+#### Scenario: Fin de fichero
+
+- **WHEN** la lectura alcanza el final del fichero
+- **THEN** la captura termina limpiamente sin error
+
+### Requirement: Soporte offline declarado
+
+El backend libpcap SHALL reportar soporte offline solo cuando su librería nativa esté disponible.
+
+#### Scenario: Librería disponible
+
+- **WHEN** la librería nativa libpcap está disponible
+- **THEN** el backend reporta soporte offline
+
+### Requirement: Escritura de savefiles con libpcap
+
+El backend libpcap SHALL escribir paquetes a un fichero savefile preservando timestamp, longitudes, tipo de capa de enlace y payload, de modo que el fichero resultante sea legible por una captura offline.
+
+#### Scenario: Escritura y relectura
+
+- **WHEN** se escribe un conjunto de paquetes a un fichero y se lee después con una captura offline
+- **THEN** los paquetes releídos preservan el timestamp, las longitudes, el tipo de capa de enlace y el payload de los originales
+
