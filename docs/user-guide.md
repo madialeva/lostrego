@@ -270,7 +270,7 @@ error. There are two ways to fix it.
 dynamic linker configuration and rebuild the cache:
 
 ```bash
-echo "/usr/lib/jvm/java-21-openjdk-21.0.7.0.6-1.0.1.el9.x86_64/lib/" \
+echo "/usr/lib/jvm/java-25-openjdk/lib/" \
   | sudo tee /etc/ld.so.conf.d/java.conf
 sudo ldconfig
 ```
@@ -280,8 +280,8 @@ it carries the search path, without touching system-wide configuration. Do this 
 granting the capabilities:
 
 ```bash
-sudo patchelf --set-rpath '/usr/lib/jvm/java-21-openjdk-21.0.7.0.6-1.0.1.el9.x86_64/lib' \
-  /usr/lib/jvm/java-21-openjdk-21.0.7.0.6-1.0.1.el9.x86_64/bin/java
+sudo patchelf --set-rpath '/usr/lib/jvm/java-25-openjdk/lib' \
+  /usr/lib/jvm/java-25-openjdk/bin/java
 ```
 
 Option B is more self-contained: it does not affect other applications and survives reboots
