@@ -42,6 +42,14 @@ This project is developed for **non-profit and educational purposes**, aiming to
 
 > _Preliminary: the libpcap backend and Lostrego Spy have not yet been load-tested._
 
+## Documentation
+
+| Document | Description |
+|---|---|
+| [User Guide](docs/user-guide.md) | Manual explaining how to use the library: setup, live capture, BPF filtering, offline capture, savefile writing, backend selection, statistics, and error handling — with examples. |
+
+This section will grow as more documentation is written.
+
 ## Development Tools
 
 | Tool | Description |

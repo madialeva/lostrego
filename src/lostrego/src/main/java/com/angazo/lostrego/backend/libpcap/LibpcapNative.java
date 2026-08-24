@@ -168,6 +168,42 @@ final class LibpcapNative {
         return (Integer) call("pcap_set_buffer_size", n.setBufferSize, p, size);
     }
 
+    /** Opens a dead handle of the given link type, used to open a dumper. */
+    static MemorySegment openDead(int linkType, int snaplen) {
+        return (MemorySegment) call("pcap_open_dead", natives().openDead, linkType, snaplen);
+    }
+
+    static MemorySegment dumpOpen(MemorySegment p, MemorySegment path) {
+        return (MemorySegment) call("pcap_dump_open", natives().dumpOpen, p, path);
+    }
+
+    static void dump(MemorySegment dumper, MemorySegment header, MemorySegment data) {
+        call("pcap_dump", natives().dump, dumper, header, data);
+    }
+
+    static void dumpClose(MemorySegment dumper) {
+        call("pcap_dump_close", natives().dumpClose, dumper);
+    }
+
+    static int dumpFlush(MemorySegment dumper) {
+        return (Integer) call("pcap_dump_flush", natives().dumpFlush, dumper);
+    }
+
+    /**
+     * Fills a {@code pcap_pkthdr} segment with the given values, handling the
+     * platform-dependent {@code tv_usec} field width.
+     */
+    static void writePkthdr(MemorySegment header, long seconds, long micros, int caplen, int len) {
+        TS_SEC.set(header, 0L, seconds);
+        if (MACOS) {
+            TS_USEC.set(header, 0L, (int) micros);
+        } else {
+            TS_USEC.set(header, 0L, micros);
+        }
+        CAPLEN.set(header, 0L, caplen);
+        LEN.set(header, 0L, len);
+    }
+
     private static Natives natives() {
         Natives n = NATIVES;
         if (n == null) {
@@ -230,7 +266,17 @@ final class LibpcapNative {
                     optional(linker, lookup, "pcap_set_immediate_mode", FunctionDescriptor.of(
                             ValueLayout.JAVA_INT, ValueLayout.ADDRESS, ValueLayout.JAVA_INT)),
                     optional(linker, lookup, "pcap_set_buffer_size", FunctionDescriptor.of(
-                            ValueLayout.JAVA_INT, ValueLayout.ADDRESS, ValueLayout.JAVA_INT)));
+                            ValueLayout.JAVA_INT, ValueLayout.ADDRESS, ValueLayout.JAVA_INT)),
+                    downcall(linker, lookup, "pcap_open_dead", FunctionDescriptor.of(
+                            ValueLayout.ADDRESS, ValueLayout.JAVA_INT, ValueLayout.JAVA_INT)),
+                    downcall(linker, lookup, "pcap_dump_open", FunctionDescriptor.of(
+                            ValueLayout.ADDRESS, ValueLayout.ADDRESS, ValueLayout.ADDRESS)),
+                    downcall(linker, lookup, "pcap_dump", FunctionDescriptor.ofVoid(
+                            ValueLayout.ADDRESS, ValueLayout.ADDRESS, ValueLayout.ADDRESS)),
+                    downcall(linker, lookup, "pcap_dump_close", FunctionDescriptor.ofVoid(
+                            ValueLayout.ADDRESS)),
+                    downcall(linker, lookup, "pcap_dump_flush", FunctionDescriptor.of(
+                            ValueLayout.JAVA_INT, ValueLayout.ADDRESS)));
         } catch (Throwable t) {
             return null;
         }
@@ -291,6 +337,11 @@ final class LibpcapNative {
             MethodHandle getErr,
             MethodHandle libVersion,
             MethodHandle setImmediateMode,
-            MethodHandle setBufferSize) {
+            MethodHandle setBufferSize,
+            MethodHandle openDead,
+            MethodHandle dumpOpen,
+            MethodHandle dump,
+            MethodHandle dumpClose,
+            MethodHandle dumpFlush) {
     }
 }

@@ -71,7 +71,8 @@ Paquete base: com.angazo.lostrego
 - **Carga de librerías nativas**: cada backend carga su librería nativa (`System.loadLibrary` o `SymbolLookup.libraryLookup`) en un inicializador estático. Si la librería no está disponible, el backend debe lanzar una excepción informativa y no impedir que otros backends funcionen.
 - **Abstracción de plataforma**: `core` define un SPI (Service Provider Interface) que cada backend implementa. La selección del backend se hace en runtime mediante `ServiceLoader` o factoría explícita.
 - **Modelo de paquetes**: el modelo de paquete en core es inmutable (records o clases con campos `final`) y no depende de ningún backend concreto.
-- **Idioma**: código fuente en inglés (nombres de clases, métodos, variables, comentarios y logs). Documentación del proyecto (AGENTS.md, openspec/) en español.
+- **Idioma**: código fuente en inglés (nombres de clases, métodos, variables, comentarios y logs). Documentación del proyecto (AGENTS.md, openspec/) en español. El manual de usuario (`docs/user-guide.md`) y el `README.md` en inglés (audiencia pública).
+- **Manual de usuario**: `docs/user-guide.md` documenta el API pública con ejemplos. Todo change que toque la API pública de la librería (`core`) o su comportamiento observable debe actualizar este manual.
 - **Documentación OpenSpec**: la prosa de `proposal.md`, `design.md`, `tasks.md` y las especificaciones debe estar en español. Se mantienen en inglés únicamente las palabras, encabezados, etiquetas o marcadores que OpenSpec exija, además de nombres de módulos, clases, interfaces, rutas, códigos y otros identificadores técnicos.
 - **Commits**: mensajes de commit en inglés, siguiendo conventional commits (feat:, fix:, docs:, etc.)
 - **Issues y milestones de GitHub**: redactados en inglés (títulos y descripciones).
@@ -91,6 +92,7 @@ Paquete base: com.angazo.lostrego
 
 | Fichero | Contenido |
 |---|---|
+| `docs/user-guide.md` | Manual de usuario de la librería (API pública y ejemplos) |
 | `openspec/specs/` | Baseline de specs (spec-driven) |
 | `openspec/changes/` | Changes activos y archivados |
 | `openspec/config.yaml` | Configuración de OpenSpec |
